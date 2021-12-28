@@ -3,6 +3,7 @@ $qry = $db->prepare("SELECT id_modulsub, nama_modulsub, link, path FROM modulsub
 $qry->execute();
 $ada = $qry->get_result();
 $t = $ada->fetch_object();
+$aksi = "modul/mod_" . $u->link . "/aksi_" . $u->link . ".php";
 switch ($_GET['act']) {
     default:
         echo '<div class="card">
@@ -43,6 +44,62 @@ switch ($_GET['act']) {
         break;
 
     case "akunbaru":
-        echo 'disini fasilitas tambah data';
+?>
+        <div class="card">
+            <div class="card-header">
+                Tambahkan akun baru
+            </div>
+            <form class="needs-validation" novalidate action="<?php echo $aksi ?>?module=<?php echo $u->link ?>&act=input" method="POST">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="userName" class="col-sm-2 col-form-label">Username</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control form-control-sm" id="userName" name="username" required>
+                            <div class="invalid-feedback">Silahkan isi username</div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control form-control-sm" id="inputPassword" name="password" required>
+                            <div class="invalid-feedback">
+                                Password tidak boleh kosong.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="levelUser" class="col-sm-2 col-form-label">Level</label>
+                        <div class="col-sm-10">
+                            <select name="level" id="levelUser" required class="custom-select custom-select-sm">
+                                <option></option>
+                                <option value="user">User</option>
+                                <option value="admin">Admin</option>
+                                <option value="superadmin">Superadmin</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Level user tidak boleh kosong.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="blokirUser" class="col-sm-2 col-form-label">Blokir</label>
+                        <div class="col-sm-10">
+                            <select name="blokir" id="blokirUser" required class="custom-select custom-select-sm">
+                                <option></option>
+                                <option value="N">Aktif</option>
+                                <option value="Y">Non Aktif</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Status user tidak boleh kosong.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Simpan</button>
+                </div>
+            </form>
+        </div>
+<?php
         break;
 }
