@@ -11,7 +11,7 @@ if (empty($_SESSION['namauser']) and empty($_SESSION['passuser'])) {
     <?php include "head.php" ?>
 
     <body>
-        <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+        <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header closed-sidebar">
             <?php include "header.php" ?>
 
             <div class="app-main">
